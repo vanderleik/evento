@@ -27,6 +27,14 @@ public class Atividade {
     @OneToMany(mappedBy = "atividade")
     private Set<Bloco> blocos = new HashSet<>();
 
+    @ManyToMany
+    @JoinTable(
+            name = "atividade_participante",
+            joinColumns = @JoinColumn(name = "atividade_id"),
+            inverseJoinColumns = @JoinColumn(name = "participante_id")
+    )
+    private Set<Participante> participantes = new HashSet<>();
+
     public Atividade() {
     }
 
@@ -80,6 +88,15 @@ public class Atividade {
 
     public Set<Bloco> getBlocos() {
         return blocos;
+    }
+
+    public Set<Participante> getParticipantes() {
+        return participantes;
+    }
+
+    public void addParticipante(Participante participante) {
+        this.participantes.add(participante);
+        participante.getAtividades().add(this);
     }
 
     @Override
