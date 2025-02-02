@@ -29,7 +29,7 @@ public class Atividade {
 
     @ManyToMany
     @JoinTable(
-            name = "atividade_participante",
+            name = "tb_atividade_participante",
             joinColumns = @JoinColumn(name = "atividade_id"),
             inverseJoinColumns = @JoinColumn(name = "participante_id")
     )
